@@ -2,7 +2,7 @@
 <html lang="fa">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Milad Aref</title>
 
 <style>
@@ -16,45 +16,79 @@
 
 body{
   height:100vh;
+  background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
   display:flex;
   justify-content:center;
   align-items:center;
-  background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
   color:white;
   overflow:hidden;
 }
 
-/* Light Glow (Optimized) */
+/* ===== Loading Screen ===== */
+
+.loader{
+  position:fixed;
+  inset:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:#0f2027;
+  z-index:10;
+  animation:fadeOut 1s ease forwards;
+  animation-delay:1.2s;
+}
+
+.loader-circle{
+  width:80px;
+  height:80px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(0,255,255,0.7),transparent);
+  filter:blur(20px);
+  animation:pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse{
+  0%{ transform:scale(0.8); opacity:0.6; }
+  100%{ transform:scale(1.2); opacity:1; }
+}
+
+@keyframes fadeOut{
+  to{ opacity:0; visibility:hidden; }
+}
+
+/* ===== Main Content ===== */
+
+.container{
+  text-align:center;
+  opacity:0;
+  animation:fadeIn 1.2s ease forwards;
+  animation-delay:1.4s;
+}
+
+@keyframes fadeIn{
+  to{ opacity:1; }
+}
+
+/* Glow Background */
 .glow{
   position:absolute;
   width:250px;
   height:250px;
   background:radial-gradient(circle,rgba(0,255,255,0.25),transparent);
   filter:blur(60px);
-  animation: floatGlow 10s ease-in-out infinite alternate;
+  animation:floatGlow 8s ease-in-out infinite alternate;
 }
 
 @keyframes floatGlow{
-  from{ transform:translate(-80px,-80px); }
-  to{ transform:translate(80px,80px); }
-}
-
-.container{
-  text-align:center;
-  animation: fadeIn 1.2s ease forwards;
-  opacity:0;
-  padding:20px;
+  from{ transform:translate(-70px,-70px); }
+  to{ transform:translate(70px,70px); }
 }
 
 .card img{
   width:92vw;
   max-width:420px;
   border-radius:25px;
-  box-shadow:0 0 30px rgba(0,255,255,0.4);
-}
-
-@keyframes fadeIn{
-  to{ opacity:1; }
+  box-shadow:0 0 35px rgba(0,255,255,0.4);
 }
 
 .buttons{
@@ -91,6 +125,10 @@ body{
 </head>
 
 <body>
+
+<div class="loader">
+  <div class="loader-circle"></div>
+</div>
 
 <div class="glow"></div>
 
